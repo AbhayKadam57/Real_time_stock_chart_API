@@ -82,6 +82,7 @@ io.on("connection", (socket) => {
         const responseData = res.data;
         const lastPair =
           Object.entries(responseData)[Object.entries(responseData).length - 1];
+        console.log(lastPair);
 
         await io.to(socket.id).emit("started", lastPair);
       } catch (error) {
