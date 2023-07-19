@@ -3,7 +3,8 @@ const socketio = require("socket.io");
 const cors = require("cors");
 const axios = require("axios");
 
-const moment = require("moment");
+const moment = require("moment-timezone");
+moment.tz.setDefault("Asia/Kolkata");
 const PORT = process.env.PORT || 4000;
 
 const app = express();
@@ -74,9 +75,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("started", async (data) => {
-    console.log(isWithinMarketLimit());
-    if (isWithinMarketLimit()) {
-      console.log(data);
+    if (isWithinMarketLimit() && data) {
       try {
         const res = await axios.get(
           `https://my-stock-api.onrender.com/one-day-hist/${data}`
@@ -84,8 +83,7 @@ io.on("connection", (socket) => {
         const responseData = res.data;
         const lastPair =
           Object.entries(responseData)[Object.entries(responseData).length - 1];
-        console.log(`${pair}:lastPair`);
-
+        console.log(lastPair);
         await io.to(socket.id).emit("started", lastPair);
       } catch (error) {
         console.error("An error occurred during the interval request:", error);
