@@ -20,8 +20,9 @@ const server = app.listen(PORT, () => {
 
 const io = socketio(server, {
   pingInterval: 25000, // Send a ping every 25 seconds
-  pingTimeout: 5000, // Consider the connection closed if no pong is received within 5 seconds
 });
+
+io.set("origins", "*:*");
 
 io.on("connection", (socket) => {
   console.log("New Connection:" + socket.id);
@@ -82,7 +83,7 @@ io.on("connection", (socket) => {
         const responseData = res.data;
         const lastPair =
           Object.entries(responseData)[Object.entries(responseData).length - 1];
-        console.log(lastPair);
+        console.log(`${pair}:lastPair`);
 
         await io.to(socket.id).emit("started", lastPair);
       } catch (error) {
