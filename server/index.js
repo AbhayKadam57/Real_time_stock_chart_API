@@ -92,7 +92,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("oneweek", async (data) => {
-    if (isWithinMarketLimit()) {
+    if (isWithinMarketLimit() && data) {
       try {
         const res = await axios.get(
           `https://my-stock-api.onrender.com/one-week-hist/${data}`
@@ -109,7 +109,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("onemonth", async (data) => {
-    if (isWithinMarketLimit()) {
+    if (isWithinMarketLimit() && data) {
       try {
         const res = await axios.get(
           `https://my-stock-api.onrender.com/one-month-hist/${data}`
