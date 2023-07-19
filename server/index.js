@@ -74,6 +74,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("started", async (data) => {
+    console.log(isWithinMarketLimit());
     if (isWithinMarketLimit()) {
       console.log(data);
       try {
