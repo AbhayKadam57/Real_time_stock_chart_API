@@ -20,9 +20,8 @@ const server = app.listen(PORT, () => {
 
 const io = socketio(server, {
   pingInterval: 25000, // Send a ping every 25 seconds
+  origin: ["*"],
 });
-
-io.set("origins", "*:*");
 
 io.on("connection", (socket) => {
   console.log("New Connection:" + socket.id);
