@@ -74,8 +74,8 @@ io.on("connection", (socket) => {
   });
 
   socket.on("started", async (data) => {
-    console.log(data);
     if (isWithinMarketLimit()) {
+      console.log(data);
       try {
         const res = await axios.get(
           `https://my-stock-api.onrender.com/one-day-hist/${data}`
