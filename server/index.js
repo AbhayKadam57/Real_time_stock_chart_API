@@ -74,6 +74,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("started", async (data) => {
+    console.log(data);
     if (isWithinMarketLimit()) {
       try {
         const res = await axios.get(
