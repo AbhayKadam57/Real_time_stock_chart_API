@@ -10,7 +10,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: [`${process.env.DEVELOPMENT_LINK}`],
+    origin: ["*"],
   })
 );
 
