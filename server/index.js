@@ -2,6 +2,9 @@ const express = require("express");
 const socketio = require("socket.io");
 const cors = require("cors");
 const axios = require("axios");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const moment = require("moment-timezone");
 moment.tz.setDefault("Asia/Kolkata");
@@ -11,7 +14,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["*"],
+    origin: [process.env.FRONTEND_LINK],
   })
 );
 
