@@ -11,12 +11,10 @@ moment.tz.setDefault("Asia/Kolkata");
 const PORT = process.env.PORT || 4000;
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(
-  cors({
-    origin: [process.env.FRONTEND_LINK],
-  })
-);
+app.use(cors());
 
 const server = app.listen(PORT, () => {
   console.log("Server is started at " + PORT);
