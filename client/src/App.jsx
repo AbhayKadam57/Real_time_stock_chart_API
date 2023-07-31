@@ -4,7 +4,7 @@ import Chart from "./Chart";
 import axios from "axios";
 import YearChart from "./YearChart";
 
-const socket = io(`${import.meta.env.VITE_BACKEND_API}`);
+const socket = io(`${import.meta.env.VITE_BACKEND_API}`, { forceBase64: true });
 
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);

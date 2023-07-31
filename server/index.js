@@ -22,6 +22,7 @@ const server = app.listen(PORT, () => {
 
 const io = socketio(server, {
   pingInterval: 25000, // Send a ping every 25 seconds
+  forceBase64: true,
 });
 
 io.on("connection", (socket) => {
