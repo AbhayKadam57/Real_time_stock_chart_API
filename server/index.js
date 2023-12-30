@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors({ origin: ["*"] }));
+app.use(cors());
 
 const server = app.listen(PORT, () => {
   console.log("Server is started at " + PORT);
@@ -23,6 +23,7 @@ const server = app.listen(PORT, () => {
 const io = socketio(server, {
   pingInterval: 25000, // Send a ping every 25 seconds
   forceBase64: true,
+  cors: true,
 });
 
 io.on("connection", (socket) => {
